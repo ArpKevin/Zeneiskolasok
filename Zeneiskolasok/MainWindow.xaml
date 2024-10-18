@@ -1,0 +1,44 @@
+﻿<Window x:Class="Zeneiskolasok.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zeneiskolasok"
+        mc:Ignorable="d"
+        Title="Hangverseny" Height="1000" Width="800">
+    <Grid>
+        <StackPanel>
+            <StackPanel Margin="10,0,10,0">
+                <Label Content="Zenei darabok" FontWeight="Bold"></Label>
+                <ListBox x:Name="listboxZeneiDarabok" Height="100px" />
+            </StackPanel>
+
+            <StackPanel Margin="10,0,10,10">
+                <Label Content="Zeneszerzők" FontWeight="Bold"></Label>
+                <Button Content="Listázás" Click="Szerzok_Listazas"></Button>
+                <ListBox x:Name="listboxZeneszerzok" Height="100px"/>
+            </StackPanel>
+
+            <StackPanel Margin="10,0,10,10">
+                <Label Content="Darabok keletkezése" FontWeight="Bold"></Label>
+                <Button Content="Számolás" Click="DarabKeletkezese_Listazas"></Button>
+                <TextBlock x:Name="textblockDarabokKeletkezesiEve" Visibility="Collapsed"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="10,0,10,10">
+                <Label Content="10-es nehézségű darabok száma" FontWeight="Bold"></Label>
+                <Button Content="Számolás" Click="TizesNehezseguDarabokSzama_Listazas"></Button>
+                <TextBlock x:Name="textblockTizesNehezseguDarabokSzama" Visibility="Collapsed"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="10,0,10,10">
+                <Label Content="Debussy darabjainak száma" FontWeight="Bold"></Label>
+                <Button Content="Számolás" Click="DebussySzamai_Listazas"></Button>
+                <TextBlock x:Name="textblockDebussySzamai" Visibility="Collapsed"></TextBlock>
+            </StackPanel>
+
+        </StackPanel>
+        
+
+    </Grid>
+</Window>
