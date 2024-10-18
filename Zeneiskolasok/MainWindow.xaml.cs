@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,6 +52,59 @@ namespace Zeneiskolasok
         {
             textblockDebussySzamai.Text = $"Az adatfájlban {zenedarabok.Count(z => z.Szerzo.Contains("Debussy"))} db Debussy szerzőjű komolyzenei darab van.";
             textblockDebussySzamai.Visibility = Visibility.Visible;
+        }
+
+        private void ValasztottDarabok_Generalas(object sender, RoutedEventArgs e)
+        {
+            using StreamWriter swZenemuvek = new(@"..\..\..\src\zenemuvek.txt");
+
+            List<Zenedarab> randomGeneraltZenedarabok = new();
+
+            while (!(randomGeneraltZenedarabok.Count == 15))
+            {
+                Random r = new Random();
+                var randomZenedarab = zenedarabok[r.Next(zenedarabok.Count)];
+                if (!(randomGeneraltZenedarabok.Contains(randomZenedarab))) randomGeneraltZenedarabok.Add(randomZenedarab);
+            }
+
+            swZenemuvek.WriteLine($"Átlagos nehézség: {Math.Round(randomGeneraltZenedarabok.Average(r => r.Nehezseg), 0)}");
+
+            foreach (var item in randomGeneraltZenedarabok)
+            {
+                swZenemuvek.Write($"{item.Cim} {item.Szerzo}|");
+            }
+        }
+
+        private void Darab_Kereses(object sender, RoutedEventArgs e)
+        {
+            if (!(zenedarabok.Exists(z => z.Cim.Contains(textboxKeresettDarab.Text))))
+            {
+                MessageBox.Show("Nincs ilyen zenedarab!", "Hiba!");
+                textboxKeresettDarab.Clear();
+            }
+            else
+            {
+                var talaltZenedarabok = zenedarabok.Where(z => z.Cim.Contains(textboxKeresettDarab.Text)).Select(z => z.Cim).ToList();
+                listboxTalaltDarabok.ItemsSource = talaltZenedarabok;
+                listboxTalaltDarabok.Visibility = Visibility.Visible;
+
+                if (talaltZenedarabok.Count > 1)
+                {
+                    Random r = new Random();
+                    var sorsoltErtek = talaltZenedarabok[r.Next(talaltZenedarabok.Count)];
+                    sorsoltDarab.Content = sorsoltErtek;
+                    sorsoltDarab.Visibility = Visibility.Visible;
+
+                    hiddenTextblock.Visibility = Visibility.Visible;
+
+                    hiddenButton.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void hiddenButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

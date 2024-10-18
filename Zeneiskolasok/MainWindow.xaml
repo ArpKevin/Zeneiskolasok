@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zeneiskolasok"
         mc:Ignorable="d"
-        Title="Hangverseny" Height="1000" Width="800">
+        Title="Hangverseny" Height="1500" Width="800">
     <Grid>
         <StackPanel>
             <StackPanel Margin="10,0,10,0">
@@ -35,6 +35,21 @@
                 <Label Content="Debussy darabjainak száma" FontWeight="Bold"></Label>
                 <Button Content="Számolás" Click="DebussySzamai_Listazas"></Button>
                 <TextBlock x:Name="textblockDebussySzamai" Visibility="Collapsed"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="10,0,10,10">
+                <Label Content="Választott darabok" FontWeight="Bold"></Label>
+                <Button Content="Generálás" Click="ValasztottDarabok_Generalas"></Button>
+            </StackPanel>
+
+            <StackPanel Margin="10,0,10,10">
+                <Label Content="Keresés" FontWeight="Bold"></Label>
+                <TextBox x:Name="textboxKeresettDarab" HorizontalAlignment="Center" Width="200px" VerticalAlignment="Center"></TextBox>
+                <Button Content="Keresés" Click="Darab_Kereses"></Button>
+                <ListBox x:Name="listboxTalaltDarabok" Visibility="Collapsed"></ListBox>
+                <Label x:Name="sorsoltDarab" Visibility="Collapsed" FontWeight="Bold"></Label>
+                <TextBlock x:Name="hiddenTextblock" Visibility="Collapsed"></TextBlock>
+                <Button x:Name="hiddenButton" Content="Válasz küldése" Visibility="Collapsed" Click="hiddenButton_Click"></Button>
             </StackPanel>
 
         </StackPanel>
